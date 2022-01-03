@@ -2,9 +2,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:xplore/cubit/app_cubit.dart';
+import 'package:xplore/cubit/app_cubit_logic.dart';
 import 'package:xplore/pages/details_page.dart';
 import 'package:xplore/pages/main_page.dart';
 import 'package:xplore/pages/welcome_page.dart';
+import 'package:xplore/services/data_services.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +23,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Xplore",
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: DetailPage(),
+      home: BlocProvider<AppCubits>(
+        create: (context) => AppCubits(
+          data: DataServices(),
+        ),
+        child: AppCubitLogics(),
+      ),
     );
   }
 }

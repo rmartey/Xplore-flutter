@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:xplore/cubit/app_cubit.dart';
 import 'package:xplore/widgets/appText.dart';
 import 'package:xplore/widgets/largeText.dart';
 import 'package:xplore/widgets/responsive_button.dart';
@@ -62,8 +64,20 @@ class _WelcomPageState extends State<WelcomPage> {
                         SizedBox(
                           height: 40,
                         ),
-                        ResponsiveButton(
-                          width: 120,
+                        GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<AppCubits>(context).getData();
+                          },
+                          child: Container(
+                            width: 120,
+                            child: Row(
+                              children: [
+                                ResponsiveButton(
+                                  width: 120,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
